@@ -1,0 +1,39 @@
+DATABASE  = sospartner
+
+TABLES = users_e, disponibilites_e, sports_e, userssports_a, reservations_e
+
+TABLE users_e = id,
+                name,
+                email,
+                password
+                
+                
+TABLE disponibilites_e = libelle,
+                         heure,
+
+TABLE sports_e = id,
+                 libelle
+
+TABLE niveaux_e = id,
+                 libelle,
+
+TABLE usersports_a = id,
+                     iduser ( = users_e.id),
+                     sport ( = sports_e.libelle),
+                     niveau,
+                     nb_commandes
+
+TABLE commandes_e = num_commande
+                       id_user ( = users_e.id)
+                       name ( = users_e.name)
+                       time_debut,
+                       time_fin,
+                       id_sport ( = sports_e.id),
+                       niveaux ( = niveau_e.id),
+                       date_commande,
+                       date_debut,
+                       date_fin
+                       
+                     
+                 
+                 
