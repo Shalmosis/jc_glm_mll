@@ -2,42 +2,40 @@ DATABASE  = sospartner
 
 TABLES = users_e, disponibilites_e, sports_e, userssports_a, reservations_e
 
-TABLE users_e = id,
-                name,
-                surname,
-                fullname, (concaténation name.surname)
-                email,
-                birthdate,
-                password,
-                sex
+TABLE users_e = id, PRIMARY A.I
+                name, VARCHAR (0,255) NOT NULLABLE
+                surname, VARCHAR (0,255)NOT NULLABLE
+                fullname, (concaténation name.surname) VARCHAR (0,255)NOT NULLABLE
+                email, VARCHAR (0,255) NOT NULLABLE
+                birthdate, DATE NULLABLE
+                password, VARCHAR (0,255) NOT NULLABLE
+                sex, VARCHAR (0,255) NULLABLE
                 
                 
                 
-TABLE disponibilites_e = libelle,
-                         heure,
+TABLE disponibilites_e = libelle, VARCHAR (0,255) NOT NULLABLE
+                         heure, INT NOT NULLABLE
 
-TABLE sports_e = id,
-                 libelle
+TABLE sports_e = id, PRIMARY A.I NOT NULLABLE
+                 libelle VARCHAR (0,255) NOT NULLABLE
 
 TABLE niveaux_e = id,
-                 libelle,
+                 libelle, VARCHAR (0,255)
 
 TABLE usersports_a = id,
-                     iduser ( = users_e.id),
-                     sport ( = sports_e.libelle),
-                     niveau,
-                     nb_commandes
+                     iduser ( = users_e.id), INT NOT NULLABLE
+                     sport ( = sports_e.libelle), VARCHAR (0,255) NOT NULLABLE
+                     niveau, VARCHAR (0,255) NOT NULLABLE 
+                     nb_commandes INT  NULLABLE
 
-TABLE commandes_e = num_commande
-                       id_user ( = users_e.id)
-                       name ( = users_e.name)
-                       time_debut,
-                       time_fin,
-                       id_sport ( = sports_e.id),
-                       niveaux ( = niveau_e.id),
-                       date_commande,
-                       date_debut,
-                       date_fin
+TABLE commandes_e = num_commande PRIMARY A.I INT NOT NULLABLE
+                       id_user ( = users_e.id) INT NOT NULLABLE
+                       name ( = users_e.name) VARCHAR (0,255) NOT NULLABLE
+                       time_debut, INT (0,255) NOT NULLABLE
+                       time_fin, INT (0,255) NOT NULLABLE
+                       id_sport ( = sports_e.id), INT NOT NULLABLE
+                       niveaux ( = niveau_e.id), INT NOT NULLABLE
+                       date_commande DATE NOT NULLABLE
                        
 TABLE city_e = id,
                cityname,
@@ -45,16 +43,16 @@ TABLE city_e = id,
                department,
                region,
                
-TABLE userinfo_a = id,
-                   iduser ( = users_e.id)
-                   city, ( = city_e.cityname)
-                   cp,  ( = city_e.cp )
-                   telnumber,
-                   description,
-                   day,
-                   time_debut,
-                   time_fin,
-                   displayinfo,
+TABLE userinfo_a = id, INT PRIMARY A.I
+                   iduser ( = users_e.id) INT NOT NULLABLE
+                   city, ( = city_e.cityname) VARCHAR (0,255) NOT NULLABLE
+                   cp,  ( = city_e.cp ) VARCHAR (0,255) NOT NULLABLE
+                   telnumber, VARCHAR (0,255) NULLABLE
+                   description, VARCHAR (0,255) NULLABLE
+                   day, (c'est quoi?)
+                   time_debut, (pourquoi ??)
+                   time_fin, (pourquoi ???
+                   displayinfo, (pourquoi ???)
                    
                  
                  
