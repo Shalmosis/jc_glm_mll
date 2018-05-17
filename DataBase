@@ -4,8 +4,13 @@ TABLES = users_e, disponibilites_e, sports_e, userssports_a, reservations_e
 
 TABLE users_e = id,
                 name,
+                surname,
+                fullname, (concaténation name.surname)
                 email,
-                password
+                birthdate,
+                password,
+                sex
+                
                 
                 
 TABLE disponibilites_e = libelle,
@@ -34,6 +39,22 @@ TABLE commandes_e = num_commande
                        date_debut,
                        date_fin
                        
-                     
+TABLE city_e = id,
+               cityname,
+               cp,
+               department,
+               region,
+               
+TABLE userinfo_a = id,
+                   iduser ( = users_e.id)
+                   city, ( = city_e.cityname)
+                   cp,  ( = city_e.cp )
+                   telnumber,
+                   description,
+                   day,
+                   time_debut,
+                   time_fin,
+                   displayinfo,
+                   
                  
                  
