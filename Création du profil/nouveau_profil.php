@@ -1,4 +1,24 @@
-<?php 
+<?php
+if(isset($_POST['sport']))
+{
+    print_r($_POST['sport']);
+    $tableau = $_POST['sport'];
+    $temp = 0;
+    
+    while($temp < count($tableau))
+    {
+        echo $tableau[$temp];
+        $nom = $tableau[$temp];
+        /*
+         $connexion = mysqli_connect("localhost", "root", "", "jc_glm_m2l");
+        $reqsport = "insert into users_sports_a ('id', 'userid', 'sport', 'niveau') values ('id', 'userid', $tableau[$temp], 'niveau') ";
+        $ajoutsport = mysqli_query($connexion, $req);
+        */
+        $temp++;
+        $niveau = $_POST["niveau$nom"];
+        echo $niveau;
+    }
+}
     $connexion = mysqli_connect("localhost", "root", "", "jc_glm_m2l");
     $req = "select * from sports";
     $resultat = mysqli_query($connexion, $req);
@@ -7,7 +27,7 @@
     $ligne; $row2;
 
 ?>
-<form action="inscription" method="post">
+<form action="nouveau_profil.php" method="post">
     <label for="description">Une courte description de vous ? (255 caractères maximum)</label><br />
        <textarea name="description" id="description" placeholder="255 caractères maximum"></textarea><br /><br />
 
@@ -17,7 +37,7 @@
 <?php 
     while($ligne = mysqli_fetch_assoc($resultat))
     {
-        echo "<label for='" . $ligne['id'] . "'>". $ligne['libelle'] . "</label><input type='checkbox' id='" . $ligne['id'] . "' name='sport' value='".$ligne['libelle'] ."'>";
+        echo "<label for='" . $ligne['id'] . "'>". $ligne['libelle'] . "</label><input type='checkbox' id='" . $ligne['id'] . "' name='sport[]' value='".$ligne['libelle'] ."'>";
 ?>
 <?php      
         /* while($row2 = mysqli_fetch_array($resultat2))
@@ -32,7 +52,7 @@
         var_dump($row2);
         echo "<br/>"; */
 ?>
-        <select name="niveau<?php echo $ligne['libelle'];?>" id="niveau">
+        <select name="niveau<?php echo $ligne['libelle'];?>" id="niveau<?php echo $ligne['libelle'];?>">
             <option value="none">Inexpérimenté(e)</option>
            <option value="Débutant">Débutant(e)</option>
            <option value="Intermediaire">Intermédiaire</option>
