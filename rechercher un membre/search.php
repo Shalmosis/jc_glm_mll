@@ -1,6 +1,19 @@
 <?php 
-    if(isset($_POST)) {
-        echo "Bonjour";
+    if(isset($_POST['sport'])) {
+        $sport = $_POST['sport'];
+        $niveau = $_POST['niveau'];
+        echo $niveau;
+
+        $connexion = mysqli_connect("localhost", "root", "", "jc_glm_m2l");
+        $req = "select users.name, usersports_a.userid, usersports_a.sport, usersports_a.niveau from users, usersports_a where users.id = usersports_a.userid and sport = '$sport' and niveau = '$niveau'";
+        $resultat = mysqli_query($connexion,$req);
+
+        print_r($resultat);
+        
+        while ($ligne = mysqli_fetch_assoc($resultat)) {
+            echo "Il y a " .mysqli_num_rows($resultat) . "personnes qui répondent à votre recherche. <br />";
+            echo $ligne['name'] . " " ."de niveau " . $ligne['niveau'] . " en " . $ligne['sport'];
+        }
     }else
 
     {
@@ -9,21 +22,21 @@
         <form method="post" action="search.php">
             <select name="sport">
                 <option value="none" selected>N'importe lequel</option>
-                <option value="football">Football</option>
-                <option value="tennis">Tennis</option>
-                <option value="tennistable">Tennis de Table</option>
-                <option value="basket">Basket</option>
-                <option value="course">Course</option>
-                <option value="fitness">Fitness</option>
-                <option value="badminton">Badminton</option>
+                <option value="Football">Football</option>
+                <option value="Tennis">Tennis</option>
+                <option value="Tennistable">Tennis de Table</option>
+                <option value="Basket">Basket</option>
+                <option value="Course">Course</option>
+                <option value="Fitness">Fitness</option>
+                <option value="Badminton">Badminton</option>
             </select>
             <label for="niveau"> De niveau </label>
-            <select name="sport">
+            <select name="niveau">
                 <option value="none" selected>Inexperimente</option>
-                <option value="debutant">Debutant</option>
-                <option value="intermediaire">Intermediaire</option>
-                <option value="expert">Expert</option>
-                <option value="challenger">Challenger</option>
+                <option value="Débutant">Débutant</option>
+                <option value="Intermédiaire">Intermédiaire</option>
+                <option value="Expert">Expert</option>
+                <option value="Challenger">Challenger</option>
             </select>
             <label for="debut"> Heure de debut </label>
             <select name="debut">
